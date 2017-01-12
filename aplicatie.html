@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Transport</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <link rel="stylesheet" href="styles.css">
+        <script>
+            var aplicatie=angular.module('aplicatie', []);
+            aplicatie.controller('controllerSoferi', function($scope, $http){
+               $http.get("https://webtech-project-alexiszaharia.c9users.io/soferi")
+               .then(function(response){
+                  $scope.soferi=response.data; 
+               });
+            });
+        </script>
+    </head>
+    <body ng-app="aplicatie">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#soferi">Soferi</a></li>
+        </ul>
+        
+        <div style="background-color:#66d9ff;margin-top:30px;padding:20px;">
+            <h1 id="home">Home</h1>
+            <p>
+                Aceasta pagina web are rolul de a ajuta soferii particulari sa-si posteze datele pentru potentialii clienti. Pagina contine o lista
+                cu toti soferii disponibili pentru transport.
+            </p>
+        </div>
+        
+        <div ng-controller="controllerSoferi" style="background-color:#b3b3ff">
+            <h1 id="soferi">Soferi</h1>
+            <p>Aici se afla un tabel care contine lista soferilor disponibili pentru transport.</p><br><br>
+            
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Nume</th>
+                    <th>Vechime</th>
+                    <th>Masina</th>
+                    <th>Numar telefon</th>
+                    <th>email</th>
+                </tr>
+                <tr ng-repeat="x in soferi">
+                    <td>{{$index+1}}</td>
+                    <td>{{x.nume}}</td>
+                    <td>{{x.vechime}}</td>
+                    <td>{{x.masina}}</td>
+                    <td>{{x.numar_telefon}}</td>
+                    <td>{{x.email}}</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
