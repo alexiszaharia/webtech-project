@@ -43,7 +43,8 @@ var Soferi=sequelize.define('soferi', {
         field: 'email'
     }
 }, {
-    timestamps: false
+    timestamps: false,
+    freezeTableName: true
 });
 
 //CRUD operations
